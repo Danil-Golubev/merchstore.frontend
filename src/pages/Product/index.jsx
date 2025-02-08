@@ -1,18 +1,19 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import styles from './Item.module.scss';
-import { fetchGetOne } from '../../redux/slices/items';
+import { fetchGetOne } from '../../redux/slices/itemSlice';
 
 export const Product = () => {
 	const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]');
 	const dispatch = useDispatch();
-	const [items, setItems] = React.useState('');
-	const [selectedSize, setSelectedSize] = React.useState(null);
-	const [cart, setCart] = React.useState(cartFromLocalStorage);
-
+	const { item: items } = useSelector((state) => state.item);
+	const [selectedSize, setSelectedSize] = useState(null);
+	const [cart, setCart] = useState(cartFromLocalStorage);
+	const { id } = useParams();
 	function addToCart() {
 		const item = {
 			_id: items._id,
@@ -36,12 +37,13 @@ export const Product = () => {
 		window.dispatchEvent(cartChangeEvent);
 	}
 
-	const { id } = useParams();
-	React.useEffect(() => {
-		dispatch(fetchGetOne(id)).then((res) => {
-			setItems(res.payload);
-		});
-	}, []);
+	useEffect(() => {
+		dispatch(fetchGetOne(id));
+	}, [dispatch, id]);
+
+	if (items == {}) {
+		return <div>loading</div>;
+	}
 
 	return (
 		<>
@@ -104,7 +106,7 @@ export const Product = () => {
 
 								<li className={styles.defaultli}>
 									{selectedSize != null || items.type == 'other' ? (
-										<div onClick={() => addToCart()} className={styles.buttonOrder}>
+										<div className={styles.buttonOrder} onClick={() => addToCart()}>
 											Add to cart
 										</div>
 									) : (
@@ -119,8 +121,7 @@ export const Product = () => {
 				</div>
 			</div>
 			{items.additionalImages?.map((item) => (
-				// eslint-disable-next-line react/jsx-key
-				<div className={styles.additionalImageDiv}>
+				<div className={styles.additionalImageDiv} key={item._index}>
 					<img className={styles.additionalImage} src={`${item}`} />
 				</div>
 			))}

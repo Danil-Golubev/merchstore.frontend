@@ -1,6 +1,6 @@
 .container {
 	width: 50%;
-	height: auto;
+	height: 70vh;
 	background-color: #ecececcc;
 	object-fit: contain;
 	box-sizing: border-box;
@@ -61,15 +61,13 @@
 		font-size: 1vw;
 	}
 }
-@media (max-width: 1200px) {
-	.textBlock {
-		font-size: 2.3vw;
-	}
-}
 
 @media (max-width: 1200px) {
 	.container {
 		height: auto;
+	}
+	.textBlock {
+		font-size: 2.3vw;
 	}
 }
 

@@ -29,7 +29,7 @@ export const Header = () => {
 		<>
 			<div className={styles.Header}>
 				<div className={styles.blocktitle}>
-					<Link to='/merchmarket-frontend/'>
+					<Link to='/merchstore.frontend/'>
 						<div className={styles.title}>
 							<img
 								className={styles.image}
@@ -55,17 +55,17 @@ export const Header = () => {
 						<div className={styles.halfblockcontent}>
 							Pages:
 							<ul className={styles.pageslist}>
-								<Link to='/merchmarket-frontend/'>
+								<Link to='/merchstore.frontend/'>
 									<li>
 										<div className={styles.pagetitle}>All items </div>
 									</li>
 								</Link>
-								<Link to='/merchmarket-frontend/contact'>
+								<Link to='/merchstore.frontend/contact'>
 									<li>
 										<div className={styles.pagetitle}>Contact </div>
 									</li>
 								</Link>
-								<Link to='/merchmarket-frontend/faqs'>
+								<Link to='/merchstore.frontend/faqs'>
 									<li>
 										<div className={styles.pagetitle}>FAQs </div>
 									</li>
@@ -76,7 +76,7 @@ export const Header = () => {
 				</div>
 
 				<div className={styles.block}>
-					<Link to='/merchmarket-frontend/cart'>
+					<Link to='/merchstore.frontend/cart'>
 						<div className={styles.halfblock2}>
 							<div className={styles.halfblockcontentBag}>
 								<div className={styles.bag}>

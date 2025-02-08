@@ -91,7 +91,7 @@ export const Faqs = () => (
 				</div>
 				<div className={styles.textinfo}>INFORMATION</div>
 				<div className={styles.textinfo}>
-					https://danil-golubev.github.io/merchmarket-frontend is operated by ownantwerp. All rights reserved.
+					https://danil-golubev.github.io/merchstore.frontend is operated by ownantwerp. All rights reserved.
 				</div>
 			</div>
 		</div>

@@ -1,30 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Home.module.scss';
 import { ItemContainer } from '../../components/ItemContainer';
 import { ItemContainerSkeleton } from '../../components/ItemContainerSkeleton';
-import { fetchGetItems } from '../../redux/slices/items';
+import { fetchGetItems } from '../../redux/slices/itemsSlice';
 
 export const Home = () => {
-	const [items, setItems] = React.useState('');
-	const [isLodaing, setLoading] = React.useState(true);
+	const { items: items } = useSelector((state) => state.items);
 	const dispatch = useDispatch();
-	React.useEffect(() => {
-		setLoading(true);
-		dispatch(fetchGetItems())
-			.then((res) => {
-				setItems(res.payload);
-				setLoading(false);
-			})
-			.catch((err) => {
-				console.warn(err.message);
-				alert('redux items error');
-			});
-	}, []);
-	console.log(items);
-	if (isLodaing) {
+	useEffect(() => {
+		if (!items.length) {
+			dispatch(fetchGetItems());
+		}
+	}, [dispatch, items.length]);
+
+	if (!items.length) {
 		return (
 			<>
 				<div className={styles.container}>
@@ -44,8 +36,13 @@ export const Home = () => {
 		<>
 			<div className={styles.container}>
 				{items.map((item) => (
-					// eslint-disable-next-line react/jsx-key
-					<ItemContainer id={item._id} imageUrl={item.imageUrl} price={'$' + item.price + '.00'} title={item.title} />
+					<ItemContainer
+						id={item._id}
+						imageUrl={item.imageUrl}
+						key={item._id}
+						price={'$' + item.price + '.00'}
+						title={item.title}
+					/>
 				))}
 			</div>
 		</>

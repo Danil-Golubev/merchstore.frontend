@@ -7,81 +7,27 @@
 	position: relative;
 	border: 0.25px solid #000000cc;
 	overflow: hidden;
+	align-items: center;
+	justify-content: center;
 }
 .title {
 	font-size: 2vw;
 	color: grey;
 	padding: 20px;
 }
-
 .modal {
 	position: absolute;
 }
-
-@keyframes skeleton-loading {
-	0% {
-		background-position: -200px 0;
-	}
-	100% {
-		background-position: calc(200px + 100%) 0;
-	}
-}
-
-.container {
-	display: inline-block;
-	background: linear-gradient(45deg, #f0f0f0 0%, #e0e0e0 30%, #f0f0f0 100%);
-	background-size: 200px 100%;
-	animation: skeleton-loading 3s infinite;
-}
-
-.skeletonText {
-}
-
-.skeletonImage {
-}
-
-.price {
-	font-style: italic;
-}
-.mainBlock {
-	width: 80%;
-	display: flex;
-}
-
 .block {
 	align-items: end;
 	top: 0px;
 	right: 0px;
 	position: absolute;
-
 	width: 20%;
 	height: 100%;
 	display: flex;
 }
 
-.textBlock {
-	text-align: left;
-	font-size: 1.3vw;
-	position: absolute;
-	bottom: 20px;
-	left: 5%;
-	width: 90%;
-}
-.price {
-	position: absolute;
-	color: black;
-	right: 0;
-}
-* {
-	margin: 0;
-}
-.imageUrl {
-	height: 73.5vw;
-	overflow: hidden;
-	display: flex;
-	position: relative;
-	width: 100%;
-}
 @media (min-width: 1200px) {
 	.container {
 		width: 25%;
@@ -91,18 +37,25 @@
 		font-size: 1vw;
 	}
 }
-@media (max-width: 1200px) {
+
+/* HTML: <div class="loader"></div> */
+.loader {
+	width: fit-content;
+	font-family: monospace;
+	white-space: pre;
+	line-height: 1.2em;
+	height: 1.2em;
+	overflow: hidden;
+}
+.loader:before {
+	content: 'Loading...\A⌰oading...\A⌰⍜ading...\A⌰⍜⏃ding...\A⌰⍜⏃⎅ing...\A⌰⍜⏃⎅⟟ng...\A⌰⍜⏃⎅⟟⋏g...\A⌰⍜⏃⎅⟟⋏☌...\A⌰⍜⏃⎅⟟⋏☌⟒..\A⌰⍜⏃⎅⟟⋏☌⟒⏁.\A⌰⍜⏃⎅⟟⋏☌⟒⏁⋔';
+	white-space: pre;
+	display: inline-block;
+	animation: l39 1s infinite steps(11) alternate;
 }
 
-@media (max-width: 1200px) {
-	.container {
-		height: auto;
+@keyframes l39 {
+	100% {
+		transform: translateY(-100%);
 	}
-}
-
-.container:hover .textBlock {
-	text-decoration: line-through;
-}
-.container:hover .price {
-	text-decoration: line-through;
 }

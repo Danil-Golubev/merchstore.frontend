@@ -5,8 +5,8 @@ import styles from './ItemContainer.module.scss';
 export const ItemContainer = ({ imageUrl, title, price, id }) => (
 	<>
 		<div className={styles.container}>
-			<Link to={`/merchmarket-frontend/item/${id}/`}>
-				<img className={styles.imageUrl} src={imageUrl} alt={title} />
+			<Link to={`/merchstore.frontend/item/${id}/`}>
+				<img alt={title} className={styles.imageUrl} src={imageUrl} />
 				<div className={styles.textBlock}>
 					<div className={styles.mainBlock}>
 						<div className={styles.title}>{title}</div>

@@ -100,7 +100,7 @@ export const Cart = () => {
 						<div className={styles.infoBox}>
 							What to do if you receive a damaged merchandise item and all information about refund policy located on
 							our{' '}
-							<Link to='/merchmarket-frontend/faqs'>
+							<Link to='/merchstore.frontend/faqs'>
 								<a className={styles.astyle}>F.A.Q</a>
 							</Link>{' '}
 							page page, visit it to get a advanced information about our order political.
