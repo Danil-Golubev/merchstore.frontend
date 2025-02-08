@@ -5,8 +5,7 @@ export const ItemContainerSkeleton = () => (
 		<div className={styles.modal}>
 			{' '}
 			<div className={styles.title}>
-				Пожалуйста подождите, проект не является коммерческим и размещен на бесплатном хостинге.
-				<br /> Первичная загрузка может занять до 10 секунд, потом все будет ок =)
+				please stand by, project hosted on the free service so first build can take one minute
 			</div>
 		</div>
 		<div className={styles.container}>

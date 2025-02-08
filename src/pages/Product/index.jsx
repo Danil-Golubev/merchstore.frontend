@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
 
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { motion } from 'framer-motion';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useParams } from 'react-router-dom';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import styles from './Item.module.scss';
-import { fetchGetOne } from '../../redux/slices/itemSlice';
+import { fetchGetOne } from '../../api/getItem';
 
 export const Product = () => {
 	const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]');
-	const dispatch = useDispatch();
-	const { item: items } = useSelector((state) => state.item);
+	const [items, setItems] = useState({});
 	const [selectedSize, setSelectedSize] = useState(null);
 	const [cart, setCart] = useState(cartFromLocalStorage);
 	const { id } = useParams();
@@ -37,10 +40,24 @@ export const Product = () => {
 		window.dispatchEvent(cartChangeEvent);
 	}
 
-	useEffect(() => {
-		dispatch(fetchGetOne(id));
-	}, [dispatch, id]);
+	const handleItem = async () => {
+		const data = await fetchGetOne(id);
+		setItems(data);
+	};
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const data = await fetchGetOne(id);
+				setItems(data);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
+
+		fetchData();
+	}, [id]);
 	if (items == {}) {
 		return <div>loading</div>;
 	}
@@ -48,9 +65,9 @@ export const Product = () => {
 	return (
 		<>
 			<div className={styles.container}>
-				<div className={styles.bighalfblock}>
-					<img className={styles.image} src={`${items.imageUrl}`} />
-				</div>
+				<motion.div animate={{ opacity: 1 }} className={styles.bighalfblock} initial={{ opacity: 0 }}>
+					<LazyLoadImage className={styles.image} effect='blur' height='auto' src={`${items.imageUrl}`} width='100%' />
+				</motion.div>
 				<div className={styles.bighalfblockinfo}>
 					<div className={styles.infocontainer}>
 						<div className={styles.contentcontainer}>

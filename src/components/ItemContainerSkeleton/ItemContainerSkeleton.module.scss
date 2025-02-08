@@ -9,6 +9,7 @@
 	overflow: hidden;
 	align-items: center;
 	justify-content: center;
+	height: 73.5vw;
 }
 .title {
 	font-size: 2vw;
@@ -28,17 +29,6 @@
 	display: flex;
 }
 
-@media (min-width: 1200px) {
-	.container {
-		width: 25%;
-		height: 37.2vw;
-	}
-	.textBlock {
-		font-size: 1vw;
-	}
-}
-
-/* HTML: <div class="loader"></div> */
 .loader {
 	width: fit-content;
 	font-family: monospace;
@@ -57,5 +47,15 @@
 @keyframes l39 {
 	100% {
 		transform: translateY(-100%);
+	}
+}
+
+@media (min-width: 1200px) {
+	.container {
+		width: 25%;
+		height: 37.4vw;
+	}
+	.textBlock {
+		font-size: 1vw;
 	}
 }

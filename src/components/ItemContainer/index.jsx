@@ -1,10 +1,11 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 import styles from './ItemContainer.module.scss';
-
 export const ItemContainer = ({ imageUrl, title, price, id }) => (
 	<>
-		<div className={styles.container}>
+		<motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} className={styles.container}>
 			<Link to={`/merchstore.frontend/item/${id}/`}>
 				<img alt={title} className={styles.imageUrl} src={imageUrl} />
 				<div className={styles.textBlock}>
@@ -16,6 +17,6 @@ export const ItemContainer = ({ imageUrl, title, price, id }) => (
 					</div>
 				</div>
 			</Link>
-		</div>
+		</motion.div>
 	</>
 );
